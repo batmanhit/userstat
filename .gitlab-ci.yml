@@ -27,15 +27,11 @@ unit:
   stage: unit
   script:
     - npm test test/unit
-  except:
-    - master
 
 coverage:
   stage: coverage
   script:
     - npm test test/unit test/integration
-  except:
-    - master
 
 # sandbox:
 #   stage: deploy
