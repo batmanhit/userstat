@@ -1,0 +1,30 @@
+service: compare-userstats
+
+package:
+  individually: true
+  exclude:
+    - lib/**
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-west-2
+  credentials: ${file(credentials.yml):credentials}
+  memorySize: 128
+  timeout: 300
+  cfLogs: true # < sls v1.10
+  versionFunctions: false
+
+functions:
+  foo-add:
+    handler: lib/foo/add.handler
+    package:
+      include: ['lib/foo/add/**']
+    events:
+      - http:
+          path: /
+          method: POST
+
+plugins:
+  - serverless-offline

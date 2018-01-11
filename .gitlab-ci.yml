@@ -1,0 +1,72 @@
+cache:
+  key: ${CI_COMMIT_REF_NAME}
+  paths:
+    - node_modules/
+  policy: pull
+
+stages:
+  - build
+  - unit
+  - coverage
+  # - deploy
+
+build:
+  stage: build
+  script:
+    # SEE: --unsafe-perm https://github.com/nodejs/docker-node/issues/93
+    - npm install --unsafe-perm --no-optional
+    # force install latest version of utils
+    - npm i git+ssh://git@gitlab.grit.work:resources/utils.git
+  cache:
+    key: ${CI_COMMIT_REF_NAME}
+    paths:
+      - node_modules/
+    policy: push
+
+unit:
+  stage: unit
+  script:
+    - npm test test/unit
+  except:
+    - master
+
+coverage:
+  stage: coverage
+  script:
+    - npm test test/unit test/integration
+  except:
+    - master
+
+# sandbox:
+#   stage: deploy
+#   environment:
+#     name: sandbox
+#   services:
+#     - deployer
+#   script:
+#     - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
+#   except:
+#     - develop
+#     - master
+#
+# develop:
+#   stage: deploy
+#   environment:
+#     name: develop
+#   services:
+#     - deployer
+#   script:
+#     - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
+#   only:
+#     - develop
+#
+# master:
+#   stage: deploy
+#   environment:
+#     name: master
+#   services:
+#     - deployer
+#   script:
+#     - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
+#   only:
+#     - master

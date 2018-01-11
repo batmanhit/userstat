@@ -1,0 +1,48 @@
+{
+  "name": "userstats",
+  "version": "0.0.1",
+  "description": "API that persists daily stats of compare users usage",
+  "main": "index.js",
+  "scripts": {
+    "test": "dotenv -e .env.default tap",
+    "offline": "dotenv -e .env.default serverless offline --noTimeout",
+    "swagger": "yaml2json swagger.yml --pretty --save",
+    "start": "npm run swagger && npm run offline",
+    "watch": "nodemon --exec npm test test/unit test/integration"
+  },
+  "pre-commit": [
+    "swagger"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.grit.work:optizmo/compare/userstats.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "^2.117.0",
+    "babel-eslint": "^6.1.2",
+    "debug": "^3.0.1",
+    "deepmerge": "^2.0.1",
+    "dotenv-cli": "^1.1.1",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-config-gritcode": "github:gritcode/module-eslint-config-gritcode",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.4.1",
+    "migrate": "^0.2.4",
+    "nodemon": "^1.14.10",
+    "serverless": "1.6.0",
+    "serverless-offline": "^3.13.2",
+    "tap": "^6.3.2",
+    "yamljs": "^0.3.0"
+  },
+  "dependencies": {
+    "ajv": "^4.9.2",
+    "debug": "^3.0.1",
+    "peegee": "git+ssh://git@gitlab.grit.work:resources/peegee.git",
+    "swagger-parser": "^3.4.1",
+    "utils": "git+ssh://git@gitlab.grit.work:resources/utils.git"
+  }
+}

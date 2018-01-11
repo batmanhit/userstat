@@ -1,0 +1,4 @@
+timeout: 240
+coverageReport: text-summary
+coverage: true
+bail: false

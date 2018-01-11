@@ -1,0 +1,99 @@
+swagger: '2.0'
+info:
+  title: compare-userstats
+  version: '1.0.0'
+  description: API that persists daily stats of compare users usage
+
+basePath: '/userstats'
+host: xhr-compare.optizmo.<tld>
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  '/':
+    post:
+      summary: Create a foo
+      description: |
+          1. Authenticates request
+          1. Validates request payload
+          1. Creates new record in database
+          1. Responds with the newly created record
+      operationId: foo-add
+      tags:
+        - foo
+      parameters:
+        - $ref: "#/parameters/bearerToken"
+        - $ref: "#/parameters/fooAdd"
+      responses:
+        200:
+          description: Newly created Foo object
+        400:
+          description: Invalid request payload
+        401:
+          description: Unauthenticated
+      x-amazon-apigateway-integration:
+        type: aws_proxy
+        passthroughBehavior: when_no_match
+        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations
+        httpMethod: POST
+
+definitions:
+  Source:
+    additionalProperties: false
+    properties:
+      source: { type: string, example: 's3' }
+      filename: { type: string, example: 'abc.txt' }
+      config: { type: object, example: { "bucket": "abc", "accessKeyId": "blah", "secretAccessKey": "blah" } }
+      overwrite: { type: boolean, example: true }
+    required: [source, filename, config]
+  Size:
+    additionalProperties: false
+    properties:
+      group1: { type: string, example: '1MB' }
+      group2: { type: string, example: '2.2MB' }
+  Duration:
+    additionalProperties: false
+    properties:
+      created: { type: integer, example: 10 }
+      queue: { type: integer, example: 20 }
+      download: { type: integer, example: 30 }
+      compare: { type: integer, example: 40 }
+      upload: { type: integer, example: 50 }
+      completed: { type: integer, example: 60 }
+  FooAdd:
+    additionalProperties: true
+    type: object
+    properties:
+      group1:
+        additionalProperties: false
+        type: object
+        properties:
+          input: { $ref: '#/definitions/Source' }
+          output: { $ref: '#/definitions/Source' }
+        required: [input]
+      group2:
+        additionalProperties: false
+        type: object
+        properties:
+          input: { $ref: '#/definitions/Source' }
+        required: [input]
+    required: [group1]
+
+parameters:
+  bearerToken:
+    name: authorization
+    in: header
+    description: authorization token
+    required: true
+    type: string
+  fooAdd:
+    in: body
+    name: body
+    description: Foo object to add
+    required: true
+    schema:
+      $ref: '#/definitions/FooAdd'
