@@ -8,7 +8,7 @@ stages:
   - build
   - unit
   - coverage
-  # - deploy
+  - deploy
 
 build:
   stage: build
@@ -33,36 +33,36 @@ coverage:
   script:
     - npm test test/unit test/integration
 
-# sandbox:
-#   stage: deploy
-#   environment:
-#     name: sandbox
-#   services:
-#     - deployer
-#   script:
-#     - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
-#   except:
-#     - develop
-#     - master
-#
-# develop:
-#   stage: deploy
-#   environment:
-#     name: develop
-#   services:
-#     - deployer
-#   script:
-#     - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
-#   only:
-#     - develop
-#
-# master:
-#   stage: deploy
-#   environment:
-#     name: master
-#   services:
-#     - deployer
-#   script:
-#     - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
-#   only:
-#     - master
+sandbox:
+  stage: deploy
+  environment:
+    name: sandbox
+  services:
+    - deployer
+  script:
+    - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
+  except:
+    - develop
+    - master
+
+develop:
+  stage: deploy
+  environment:
+    name: develop
+  services:
+    - deployer
+  script:
+    - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
+  only:
+    - develop
+
+master:
+  stage: deploy
+  environment:
+    name: master
+  services:
+    - deployer
+  script:
+    - deploy projectId=$CI_PROJECT_ID pipelineId=$CI_PIPELINE_ID buildId=$CI_BUILD_ID projectPath=$CI_PROJECT_PATH
+  only:
+    - master
