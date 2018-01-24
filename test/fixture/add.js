@@ -1,38 +1,5 @@
 const payload = {
-  group1: {
-    input: {
-      source: 's3',
-      filename: 'compare-comparer/email-200.txt',
-      config: {
-        bucket: 'optizmo-integration-sandbox',
-        accessKeyId: 'AKIAIPKYVRIVZ3AOJXGA',
-        secretAccessKey: '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',
-      },
-      overwrite: true,
-    },
-    output: {
-      source: 's3',
-      filename: 'compare-comparer/split.zip',
-      config: {
-        bucket: 'optizmo-integration-sandbox',
-        accessKeyId: 'AKIAIPKYVRIVZ3AOJXGA',
-        secretAccessKey: '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',
-      },
-      overwrite: true,
-    },
-  },
-  group2: {
-    input: {
-      source: 's3',
-      filename: 'compare-comparer/email-100.txt',
-      config: {
-        bucket: 'optizmo-integration-sandbox',
-        accessKeyId: 'AKIAIPKYVRIVZ3AOJXGA',
-        secretAccessKey: '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',
-      },
-      overwrite: true,
-    },
-  },
+  bah: 'integration test payload',
 };
 
 const rows = [{

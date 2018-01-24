@@ -10,7 +10,7 @@ const __ = module => path.resolve(__dirname, './../../../', module);
 const createEvent = body => ({
   headers: {
     Authorization: `Bearer ${BEARER_TOKEN}`,
-    'Content-Type': 'applicaton/json',
+    'Content-Type': 'application/json',
   },
   body: JSON.stringify(body),
 });
@@ -35,7 +35,7 @@ test('valid request', t => {
   handler(eventOk, {}, (err, { statusCode, body }) => {
     const { msg } = JSON.parse(body);
     t.strictSame(statusCode, 200);
-    t.strictSame(msg, 'Foo added');
+    t.strictSame(msg, 'OK');
     t.end();
   });
 });
@@ -44,7 +44,7 @@ test('invalid request', t => {
   handler(eventInvalid, {}, (err, { statusCode, body }) => {
     const { msg } = JSON.parse(body);
     t.strictSame(statusCode, 400);
-    t.strictSame(msg, 'Invalid request');
+    t.strictSame(msg, 'Invalid Request');
     t.end();
   });
 });
