@@ -43,7 +43,7 @@ test('valid request', t => {
   transport()(eventOk, {}, (err, { statusCode, body }) => {
     const keys = ['created', 'id', 'request', 'response', 'stats', 'status'];
     t.strictSame(statusCode, 200);
-    t.strictSame(body.msg, 'Foo added');
+    t.strictSame(body.msg, 'OK');
     t.strictSame(Object.keys(body.data).sort(), keys);
     t.end();
   });
