@@ -21,7 +21,10 @@ staging | [![](https://img.shields.io/badge/pgweb-url-36688E.svg?style=for-the-b
 <p>&nbsp;</p>
 
 ## Development
+Import the `compare-userstats.postman_collection.json` into postman. Keep it up to date by exporting your collection to the file.
+The following commands will allow you to run the service locally.  
 
+### Commands
 ```bash
 # clone repo
 git clone git@gitlab.grit.work:optizmo/compare/userstats.git
@@ -38,4 +41,13 @@ npm test test/integration
 # migrations
 migrate up --env .env --state-file migrations/.master|develop|sandbox
 migrate down --env .env --state-file migrations/.master|develop|sandbox
+```
+
+### Running swagger locally
+
+```bash
+docker pull swaggerapi/swagger-ui
+docker run -p 8080:8080 swaggerapi/swagger-ui
+# visit in browser
+http://localhost:9000/?url=https://localhost:3000/userstats/swagger
 ```

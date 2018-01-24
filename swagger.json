@@ -5,8 +5,8 @@
     "version": "1.0.0",
     "description": "API that persists daily stats of compare users usage"
   },
+  "host": "localhost:3000",
   "basePath": "/userstats",
-  "host": "xhr-compare.optizmo.<tld>",
   "schemes": [
     "https"
   ],
@@ -31,17 +31,66 @@
           },
           {
             "$ref": "#/parameters/fooAdd"
+          },
+          {
+            "$ref": "#/parameters/jsonContentType"
           }
         ],
         "responses": {
           "200": {
-            "description": "Newly created Foo object"
+            "description": "OK"
           },
           "400": {
-            "description": "Invalid request payload"
+            "description": "Invalid request"
           },
           "401": {
-            "description": "Unauthenticated"
+            "description": "Unauthorised"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "passthroughBehavior": "when_no_match",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations",
+          "httpMethod": "POST"
+        }
+      },
+      "options": {
+        "operationId": "preflight-foo-add",
+        "parameters": [
+          {
+            "$ref": "#/parameters/bearerToken"
+          },
+          {
+            "$ref": "#/parameters/fooAdd"
+          }
+        ],
+        "description": "Enable CORS by returning correct headers",
+        "tags": [
+          "preflight"
+        ],
+        "responses": {
+          "200": {
+            "description": "preflight headers"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "passthroughBehavior": "when_no_match",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations",
+          "httpMethod": "POST"
+        }
+      }
+    },
+    "/swagger": {
+      "get": {
+        "description": "swagger spec",
+        "operationId": "swagger",
+        "tags": [
+          "swagger"
+        ],
+        "responses": {
+          "200": {
+            "description": "swagger spec"
           }
         },
         "x-amazon-apigateway-integration": {
@@ -54,116 +103,27 @@
     }
   },
   "definitions": {
-    "Source": {
-      "additionalProperties": false,
-      "properties": {
-        "source": {
-          "type": "string",
-          "example": "s3"
-        },
-        "filename": {
-          "type": "string",
-          "example": "abc.txt"
-        },
-        "config": {
-          "type": "object",
-          "example": {
-            "bucket": "abc",
-            "accessKeyId": "blah",
-            "secretAccessKey": "blah"
-          }
-        },
-        "overwrite": {
-          "type": "boolean",
-          "example": true
-        }
-      },
-      "required": [
-        "source",
-        "filename",
-        "config"
-      ]
-    },
-    "Size": {
-      "additionalProperties": false,
-      "properties": {
-        "group1": {
-          "type": "string",
-          "example": "1MB"
-        },
-        "group2": {
-          "type": "string",
-          "example": "2.2MB"
-        }
-      }
-    },
-    "Duration": {
-      "additionalProperties": false,
-      "properties": {
-        "created": {
-          "type": "integer",
-          "example": 10
-        },
-        "queue": {
-          "type": "integer",
-          "example": 20
-        },
-        "download": {
-          "type": "integer",
-          "example": 30
-        },
-        "compare": {
-          "type": "integer",
-          "example": 40
-        },
-        "upload": {
-          "type": "integer",
-          "example": 50
-        },
-        "completed": {
-          "type": "integer",
-          "example": 60
-        }
-      }
-    },
     "FooAdd": {
-      "additionalProperties": true,
       "type": "object",
+      "additionalProperties": false,
       "properties": {
-        "group1": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "input": {
-              "$ref": "#/definitions/Source"
-            },
-            "output": {
-              "$ref": "#/definitions/Source"
-            }
-          },
-          "required": [
-            "input"
-          ]
-        },
-        "group2": {
-          "additionalProperties": false,
-          "type": "object",
-          "properties": {
-            "input": {
-              "$ref": "#/definitions/Source"
-            }
-          },
-          "required": [
-            "input"
-          ]
+        "bah": {
+          "type": "string",
+          "example": "Im a bah"
         }
       },
       "required": [
-        "group1"
+        "bah"
       ]
     }
   },
   "parameters": {
+    "jsonContentType": {
+      "name": "content-type",
+      "in": "header",
+      "description": "request body mime type",
+      "type": "string"
+    },
     "bearerToken": {
       "name": "authorization",
       "in": "header",

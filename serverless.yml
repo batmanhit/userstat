@@ -23,8 +23,24 @@ functions:
       include: ['lib/foo/add/**']
     events:
       - http:
-          path: /
+          path: /userstats
           method: POST
+  swagger:
+    handler: lib/swagger.handler
+    package:
+      include: ['lib/swagger/**']
+    events:
+      - http:
+          path: /userstats/swagger
+          method: GET
+  preflight-foo-add:
+    handler: lib/preflight.handler
+    package:
+      include: ['lib/preflight/**']
+    events:
+      - http:
+          path: /userstats
+          method: OPTIONS
 
 plugins:
   - serverless-offline

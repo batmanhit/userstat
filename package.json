@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "dotenv -e .env.default tap",
-    "offline": "dotenv -e .env.default serverless offline --noTimeout",
+    "offline": "dotenv -e .env.default serverless offline -- --httpsProtocol certs",
     "swagger": "yaml2json swagger.yml --pretty --save",
     "start": "npm run swagger && npm run offline",
     "watch": "nodemon --exec npm test test/unit test/integration"

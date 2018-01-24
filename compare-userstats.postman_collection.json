@@ -1,0 +1,77 @@
+{
+	"info": {
+		"name": "compare/userstats",
+		"_postman_id": "45cfb725-4d1f-92be-495d-492482f9993b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET /userstats/swagger",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://localhost:3000/userstats/swagger",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userstats",
+						"swagger"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST /userstats/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "abcz-1239",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bah\": \"Hello World\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:3000/userstats/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userstats",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
