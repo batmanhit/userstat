@@ -15,8 +15,8 @@
 
 environment | postgres | api
 --- | --- | ---
-sandbox | [![](https://img.shields.io/badge/pgweb-url-36688E.svg?style=for-the-badge)](compare:VEakjffZXBFdp@compare-job.cvrjrkdqsiqf.us-west-2.rds.amazonaws.com:5432/compare) | [![](https://img.shields.io/badge/swagger-interactive docs-8ABD25.svg?style=for-the-badge)](http://petstore.swagger.io/?url=https://srv-compare.optizmo.grit.ninja/userstats/swagger)
-staging | [![](https://img.shields.io/badge/pgweb-url-36688E.svg?style=for-the-badge)](compare:V35kgfFxX9Fdp@compare-job.cwvyfiiiv5fp.us-west-2.rds.amazonaws.com:5432/compare) | [![](https://img.shields.io/badge/swagger-interactive docs-8ABD25.svg?style=for-the-badge)](http://petstore.swagger.io/?url=https://srv-compare.optizmo.grit.run/userstats/swagger)
+sandbox | [![](https://img.shields.io/badge/pgweb-url-36688E.svg?style=for-the-badge)](compare:VEakjffZXBFdp@compare-job.cvrjrkdqsiqf.us-west-2.rds.amazonaws.com:5432/compare) | [![](https://img.shields.io/badge/swagger-interactive docs-8ABD25.svg?style=for-the-badge)](http://petstore.swagger.io/?url=https://svr-compare.optizmo.grit.ninja/userstats/swagger)
+staging | [![](https://img.shields.io/badge/pgweb-url-36688E.svg?style=for-the-badge)](compare:V35kgfFxX9Fdp@compare-job.cwvyfiiiv5fp.us-west-2.rds.amazonaws.com:5432/compare) | [![](https://img.shields.io/badge/swagger-interactive docs-8ABD25.svg?style=for-the-badge)](http://petstore.swagger.io/?url=https://svr-compare.optizmo.grit.run/userstats/swagger)
 
 <p>&nbsp;</p>
 
