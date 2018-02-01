@@ -5,8 +5,6 @@
     "version": "1.0.0",
     "description": "API that persists daily stats of compare users usage"
   },
-  "host": "svr-compare.optizmo.<tld>",
-  "basePath": "/userstats",
   "schemes": [
     "https"
   ],
@@ -18,22 +16,121 @@
   ],
   "paths": {
     "/": {
-      "post": {
-        "summary": "Create a foo",
-        "description": "1. Authenticates request\n1. Validates request payload\n1. Creates new record in database\n1. Responds with the newly created record\n",
-        "operationId": "foo-add",
+      "get": {
+        "summary": "Browse",
+        "description": "The browse endpoint returns an array of records for the {id} between the range of the query params from and to, or for the month or year.",
+        "operationId": "browse",
         "tags": [
-          "foo"
+          "userstat-browse"
         ],
         "parameters": [
           {
             "$ref": "#/parameters/bearerToken"
           },
           {
-            "$ref": "#/parameters/fooAdd"
+            "$ref": "#/parameters/jsonContentType"
+          },
+          {
+            "$ref": "#/parameters/userstatID"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "From Date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "To Date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "description": "Month",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Year",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful browse",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "default": "OK"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Userstat"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/NotFound"
+          },
+          "401": {
+            "$ref": "#/responses/UnAuthorised"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "passthroughBehavior": "when_no_match",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations",
+          "httpMethod": "POST"
+        }
+      },
+      "post": {
+        "summary": "Create a UserStat",
+        "description": "1. Authenticates request\n2. Validates request payload\n3. Creates new userstat in database\n4. Responds with the newly created record\n",
+        "operationId": "add",
+        "tags": [
+          "userstat-add"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/bearerToken"
           },
           {
             "$ref": "#/parameters/jsonContentType"
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "userID": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "jobs": {
+                  "type": "integer",
+                  "format": "int16"
+                },
+                "records": {
+                  "type": "integer",
+                  "format": "int16"
+                }
+              }
+            },
+            "description": "JSON Body for a new userstat"
           }
         ],
         "responses": {
@@ -41,10 +138,10 @@
             "description": "OK"
           },
           "400": {
-            "description": "Invalid request"
+            "$ref": "#/responses/NotFound"
           },
           "401": {
-            "description": "Unauthorised"
+            "$ref": "#/responses/UnAuthorised"
           }
         },
         "x-amazon-apigateway-integration": {
@@ -55,13 +152,159 @@
         }
       },
       "options": {
-        "operationId": "preflight-foo-add",
+        "operationId": "preflight-userstat-add",
         "parameters": [
           {
             "$ref": "#/parameters/bearerToken"
           },
           {
-            "$ref": "#/parameters/fooAdd"
+            "$ref": "#/parameters/jsonContentType"
+          }
+        ],
+        "description": "Enable CORS by returning correct headers",
+        "tags": [
+          "preflight"
+        ],
+        "responses": {
+          "200": {
+            "description": "preflight headers"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "passthroughBehavior": "when_no_match",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations",
+          "httpMethod": "POST"
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "summary": "Read",
+        "description": "The read endpoint returns a single record for the {id} of the current day.Should be able to abstract from the date field the day value.",
+        "operationId": "read",
+        "tags": [
+          "userstat-read"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/bearerToken"
+          },
+          {
+            "$ref": "#/parameters/jsonContentType"
+          },
+          {
+            "$ref": "#/parameters/userstatID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful read",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "default": "OK"
+                },
+                "data": {
+                  "$ref": "#/definitions/Userstat"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/NotFound"
+          },
+          "401": {
+            "$ref": "#/responses/UnAuthorised"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "passthroughBehavior": "when_no_match",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations",
+          "httpMethod": "POST"
+        }
+      },
+      "put": {
+        "summary": "Edit",
+        "description": "The Edit endpoint is overloaded and is not RESTFUL; it can also create a new record if it doesn't exist. If the record exists, it increments the jobs and records values.",
+        "operationId": "edit",
+        "tags": [
+          "userstat-edit"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/bearerToken"
+          },
+          {
+            "$ref": "#/parameters/jsonContentType"
+          },
+          {
+            "$ref": "#/parameters/userstatID"
+          },
+          {
+            "in": "body",
+            "name": "payload",
+            "schema": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "jobs": {
+                  "type": "integer",
+                  "format": "int16"
+                },
+                "records": {
+                  "type": "integer",
+                  "format": "int16"
+                }
+              }
+            },
+            "description": "Edit Body"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful edit",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "default": "OK"
+                },
+                "data": {
+                  "$ref": "#/definitions/Userstat"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/NotFound"
+          },
+          "401": {
+            "$ref": "#/responses/UnAuthorised"
+          }
+        },
+        "x-amazon-apigateway-integration": {
+          "type": "aws_proxy",
+          "passthroughBehavior": "when_no_match",
+          "uri": "arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations",
+          "httpMethod": "POST"
+        }
+      },
+      "options": {
+        "operationId": "preflight-userstat-put-get",
+        "parameters": [
+          {
+            "$ref": "#/parameters/bearerToken"
+          },
+          {
+            "$ref": "#/parameters/jsonContentType"
+          },
+          {
+            "$ref": "#/parameters/userstatID"
           }
         ],
         "description": "Enable CORS by returning correct headers",
@@ -103,18 +346,66 @@
     }
   },
   "definitions": {
-    "FooAdd": {
+    "Userstat": {
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "bah": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "created": {
           "type": "string",
-          "example": "Im a bah"
+          "format": "date-time"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "jobs": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "records": {
+          "type": "integer",
+          "format": "int64"
         }
-      },
-      "required": [
-        "bah"
-      ]
+      }
+    },
+    "Response400": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "msg": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "Response401": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "NotFound": {
+      "description": "NotFound Request",
+      "schema": {
+        "$ref": "#/definitions/Response400"
+      }
+    },
+    "UnAuthorised": {
+      "description": "Unauthorised Request",
+      "schema": {
+        "$ref": "#/definitions/Response401"
+      }
     }
   },
   "parameters": {
@@ -131,14 +422,15 @@
       "required": true,
       "type": "string"
     },
-    "fooAdd": {
-      "in": "body",
-      "name": "body",
-      "description": "Foo object to add",
+    "userstatID": {
+      "name": "id",
+      "in": "path",
+      "description": "userstat ID",
       "required": true,
-      "schema": {
-        "$ref": "#/definitions/FooAdd"
-      }
+      "type": "integer",
+      "format": "int64"
     }
-  }
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/eaglewarrior8837/temp/1.0.0"
 }
