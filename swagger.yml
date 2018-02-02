@@ -96,10 +96,8 @@ paths:
                 type: integer
               jobs:
                 type: integer
-                format: int16
               records:
                 type: integer
-                format: int16
           description: JSON Body for a new userstat
       responses:
         200:
@@ -178,10 +176,8 @@ paths:
           properties:
             jobs:
               type: integer
-              format: int16
             records:
               type: integer
-              format: int16
         description: Edit Body
       responses:
         200:

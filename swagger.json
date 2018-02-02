@@ -120,12 +120,10 @@
                   "type": "integer"
                 },
                 "jobs": {
-                  "type": "integer",
-                  "format": "int16"
+                  "type": "integer"
                 },
                 "records": {
-                  "type": "integer",
-                  "format": "int16"
+                  "type": "integer"
                 }
               }
             },
@@ -251,12 +249,10 @@
               "additionalProperties": false,
               "properties": {
                 "jobs": {
-                  "type": "integer",
-                  "format": "int16"
+                  "type": "integer"
                 },
                 "records": {
-                  "type": "integer",
-                  "format": "int16"
+                  "type": "integer"
                 }
               }
             },

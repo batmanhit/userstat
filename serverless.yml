@@ -17,16 +17,24 @@ provider:
   versionFunctions: false
 
 functions:
-  foo-add:
-    handler: lib/foo/add.handler
+  userstat-browse:
+    handler: lib/userstat/browse.handler
     package:
-      include: ['lib/foo/add/**']
+      include: ['lib/userstat/browse/**']
+    events:
+      - http:
+          path: /userstats
+          method: GET
+  userstat-add:
+    handler:  lib/userstat/add.handler
+    package:
+      include: ['lib/userstat/add/**']
     events:
       - http:
           path: /userstats
           method: POST
   swagger:
-    handler: lib/swagger.handler
+    handler:  lib/swagger.handler
     package:
       include: ['lib/swagger/**']
     events:
