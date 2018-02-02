@@ -31,34 +31,34 @@
             "$ref": "#/parameters/jsonContentType"
           },
           {
-            "$ref": "#/parameters/userstatID"
+            "name": "id",
+            "in": "query",
+            "description": "User Stat ID",
+            "required": true,
+            "type": "integer"
           },
           {
             "name": "from",
             "in": "query",
             "description": "From Date",
-            "required": true,
             "type": "string"
           },
           {
             "name": "to",
             "in": "query",
             "description": "To Date",
-            "required": true,
             "type": "string"
           },
           {
             "name": "month",
             "in": "query",
             "description": "Month",
-            "required": true,
             "type": "string"
           },
           {
             "name": "year",
             "in": "query",
             "description": "Year",
-            "required": true,
             "type": "string"
           }
         ],
@@ -117,8 +117,7 @@
               "additionalProperties": false,
               "properties": {
                 "userID": {
-                  "type": "integer",
-                  "format": "int64"
+                  "type": "integer"
                 },
                 "jobs": {
                   "type": "integer",
@@ -368,7 +367,7 @@
         },
         "records": {
           "type": "integer",
-          "format": "int64"
+          "format": "int16"
         }
       }
     },
@@ -427,8 +426,7 @@
       "in": "path",
       "description": "userstat ID",
       "required": true,
-      "type": "integer",
-      "format": "int64"
+      "type": "integer"
     }
   },
   "host": "virtserver.swaggerhub.com",

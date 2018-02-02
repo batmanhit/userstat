@@ -25,26 +25,30 @@ paths:
       parameters:
       - $ref: "#/parameters/bearerToken"
       - $ref: "#/parameters/jsonContentType"
-      - $ref: "#/parameters/userstatID"
+      - name: id
+        in: query
+        description: User Stat ID
+        required: true
+        type: integer
       - name: from
         in: query
         description: From Date
-        required: true
+        # required: true
         type: string
       - name: to
         in: query
         description: To Date
-        required: true
+        # required: true
         type: string
       - name: month
         in: query
         description: Month
-        required: true
+        # required: true
         type: string
       - name: year
         in: query
         description: Year
-        required: true
+        # required: true
         type: string
       responses:
         200:
@@ -90,7 +94,6 @@ paths:
             properties:
               userID:
                 type: integer
-                format: int64
               jobs:
                 type: integer
                 format: int16
@@ -251,7 +254,7 @@ definitions:
         format: "int16"
       records:
         type: "integer"
-        format: "int64"
+        format: "int16"
   Response400:
     type: object
     additionalProperties: false
@@ -293,7 +296,6 @@ parameters:
     description: userstat ID
     required: true
     type: integer
-    format: int64
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
 basePath: /eaglewarrior8837/temp/1.0.0
