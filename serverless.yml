@@ -39,7 +39,7 @@ functions:
       include: ['lib/userstat/read/**']
     events:
       - http:
-          path: /userstats/{id}
+          path: /userstats/{id+}
           method: GET
   userstat-edit:
     handler:  lib/userstat/edit.handler
@@ -47,7 +47,7 @@ functions:
       include: ['lib/userstat/edit/**']
     events:
       - http:
-          path: /userstats/{id}
+          path: /userstats/{id+}
           method: PUT
   swagger:
     handler:  lib/swagger.handler
