@@ -21,14 +21,14 @@ const { payload } = require(__('test/fixture/add.js'));
 const eventOk = createEvent(payload);
 // 400 Invalid request body
 const eventInvalid = createEvent(merge(payload,
-  { group1: { source: { foo: true } } }));
+  { group1: { source: { userstat: true } } }));
 // 401 Invalid bearer token value
 const eventUnauthorised = merge(createEvent(payload), {
   headers: { Authorization: 'Bearer: InvalidTokenValue' },
 });
 
 // module
-const { handler } = require(__('lib/foo/add'));
+const { handler } = require(__('lib/userstat/add'));
 
 // tests
 test('valid request', t => {
