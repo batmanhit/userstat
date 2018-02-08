@@ -19,7 +19,7 @@ paths:
     get:
       summary: Browse
       description: The browse endpoint returns an array of records for the {id} between the range of the query params from and to, or for the month or year.
-      operationId: browse
+      operationId: userstat-browse
       tags:
       - userstat-browse
       parameters:
@@ -80,7 +80,7 @@ paths:
           2. Validates request payload
           3. Creates new userstat in database
           4. Responds with the newly created record
-      operationId: add
+      operationId: userstat-add
       tags:
         - userstat-add
       parameters:
@@ -131,7 +131,7 @@ paths:
     get:
       summary: Read
       description: The read endpoint returns a single record for the {id} of the current day.Should be able to abstract from the date field the day value.
-      operationId: read
+      operationId: userstat-read
       tags: 
       - userstat-read
       parameters:
@@ -161,7 +161,7 @@ paths:
     put:
       summary: Edit
       description: The Edit endpoint is overloaded and is not RESTFUL; it can also create a new record if it doesn't exist. If the record exists, it increments the jobs and records values.
-      operationId: edit
+      operationId: userstat-edit
       tags:
       - userstat-edit
       parameters:
@@ -200,7 +200,7 @@ paths:
         uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations
         httpMethod: POST
     options:
-      operationId: preflight-userstat-put-get
+      operationId: preflight-userstat-edit
       parameters:
         - $ref: "#/parameters/bearerToken"
         - $ref: "#/parameters/jsonContentType"
