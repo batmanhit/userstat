@@ -5,7 +5,7 @@ const params = {
 
 const rows = [{
   id: 1,
-  request: { ...params },
+  request: { params },
   response: {},
   status: 'queued',
   stats: {},
