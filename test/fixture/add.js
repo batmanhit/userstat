@@ -1,5 +1,9 @@
+
 const payload = {
-  bah: 'integration test payload',
+  created: new Date(),
+  userId: 10,
+  jobs: 15,
+  records: 25,
 };
 
 const rows = [{
@@ -8,7 +12,7 @@ const rows = [{
   response: {},
   status: 'queued',
   stats: {},
-  created: 1505715387,
+  created: new Date(),
 }];
 
 module.exports = { rows, payload };
