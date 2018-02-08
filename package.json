@@ -41,6 +41,7 @@
   "dependencies": {
     "ajv": "^4.9.2",
     "debug": "^3.0.1",
+    "moment": "^2.20.1",
     "peegee": "git+ssh://git@gitlab.grit.work:resources/peegee.git",
     "swagger-parser": "^3.4.1",
     "utils": "git+ssh://git@gitlab.grit.work:resources/utils.git"
