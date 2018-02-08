@@ -10,7 +10,7 @@ const payload = {
 
 const rows = [{
   id: 1,
-  request: { ...params, ...payload },
+  request: { params, payload },
   response: {},
   status: 'queued',
   stats: {},
