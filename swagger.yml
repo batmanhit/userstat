@@ -199,23 +199,6 @@ paths:
         passthroughBehavior: when_no_match
         uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations
         httpMethod: POST
-    options:
-      operationId: preflight-userstat-edit
-      parameters:
-        - $ref: "#/parameters/bearerToken"
-        - $ref: "#/parameters/jsonContentType"
-        - $ref: "#/parameters/userstatID"
-      description: Enable CORS by returning correct headers
-      tags:
-        - preflight
-      responses:
-        200:
-          description: preflight headers
-      x-amazon-apigateway-integration:
-        type: aws_proxy
-        passthroughBehavior: when_no_match
-        uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations
-        httpMethod: POST
   '/swagger':
     get:
       description: swagger spec

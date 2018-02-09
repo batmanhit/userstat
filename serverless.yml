@@ -57,7 +57,7 @@ functions:
       - http:
           path: /userstats/swagger
           method: GET
-  preflight-foo-add:
+  preflight-userstat-add:
     handler: lib/preflight.handler
     package:
       include: ['lib/preflight/**']
