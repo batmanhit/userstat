@@ -58,17 +58,17 @@ functions:
           path: /userstats/swagger
           method: GET
   preflight-userstat-add:
-    handler: lib/preflight.handler
+    handler: lib/preflight/add.handler
     package:
-      include: ['lib/preflight/**']
+      include: ['lib/preflight/add/**']
     events:
       - http:
           path: /userstats
           method: OPTIONS
   preflight-userstat-edit:
-    handler: lib/preflight.handler
+    handler: lib/preflight/edit.handler
     package:
-      include: ['lib/preflight/**']
+      include: ['lib/preflight/edit/**']
     events:
       - http:
           path: /userstats/{id+}

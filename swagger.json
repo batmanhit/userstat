@@ -5,6 +5,8 @@
     "version": "1.0.0",
     "description": "API that persists daily stats of compare users usage"
   },
+  "host": "svr-compare.optizmo.<tld>",
+  "basePath": "/userstats",
   "schemes": [
     "https"
   ],
@@ -424,7 +426,5 @@
       "required": true,
       "type": "integer"
     }
-  },
-  "host": "svr-compare.optizmo.<tld>",
-  "basePath": "/userstats"
+  }
 }
