@@ -20,7 +20,7 @@ const { params } = require(__('test/fixture/read.js'));
 // 200 Valid request
 const eventOk = createEvent(params);
 // 400 Invalid request body
-const eventInvalid = createEvent({});
+const eventInvalid = createEvent({ id: 'Invalid ID' });
 // 401 Invalid bearer token value
 const eventUnauthorised = merge(createEvent(params), {
   headers: { Authorization: 'Bearer: InvalidTokenValue' },
