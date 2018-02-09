@@ -37,19 +37,22 @@
             "in": "query",
             "description": "User Stat ID",
             "required": true,
-            "type": "integer"
+            "type": "integer",
+            "default": 10
           },
           {
             "name": "from",
             "in": "query",
             "description": "From Date",
-            "type": "string"
+            "type": "string",
+            "default": "20170101"
           },
           {
             "name": "to",
             "in": "query",
             "description": "To Date",
-            "type": "string"
+            "type": "string",
+            "default": "20180209"
           },
           {
             "name": "month",
@@ -119,13 +122,16 @@
               "additionalProperties": false,
               "properties": {
                 "userID": {
-                  "type": "integer"
+                  "type": "integer",
+                  "example": 10
                 },
                 "jobs": {
-                  "type": "integer"
+                  "type": "integer",
+                  "example": 100
                 },
                 "records": {
-                  "type": "integer"
+                  "type": "integer",
+                  "example": 100
                 }
               }
             },
@@ -251,10 +257,12 @@
               "additionalProperties": false,
               "properties": {
                 "jobs": {
-                  "type": "integer"
+                  "type": "integer",
+                  "example": 100
                 },
                 "records": {
-                  "type": "integer"
+                  "type": "integer",
+                  "example": 100
                 }
               }
             },
@@ -410,21 +418,24 @@
       "name": "content-type",
       "in": "header",
       "description": "request body mime type",
-      "type": "string"
+      "type": "string",
+      "default": "application/json"
     },
     "bearerToken": {
       "name": "authorization",
       "in": "header",
       "description": "authorization token",
       "required": true,
-      "type": "string"
+      "type": "string",
+      "default": "Bearer abcz-1239"
     },
     "userstatID": {
       "name": "id",
       "in": "path",
       "description": "userstat ID",
       "required": true,
-      "type": "integer"
+      "type": "integer",
+      "default": 10
     }
   }
 }

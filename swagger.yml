@@ -30,16 +30,19 @@ paths:
         description: User Stat ID
         required: true
         type: integer
+        default: 10
       - name: from
         in: query
         description: From Date
         # required: true
         type: string
+        default: '20170101'
       - name: to
         in: query
         description: To Date
         # required: true
         type: string
+        default: '20180209'
       - name: month
         in: query
         description: Month
@@ -94,10 +97,13 @@ paths:
             properties:
               userID:
                 type: integer
+                example: 10
               jobs:
                 type: integer
+                example: 100
               records:
                 type: integer
+                example: 100
           description: JSON Body for a new userstat
       responses:
         200:
@@ -176,8 +182,10 @@ paths:
           properties:
             jobs:
               type: integer
+              example: 100
             records:
               type: integer
+              example: 100
         description: Edit Body
       responses:
         200:
@@ -216,6 +224,7 @@ paths:
         passthroughBehavior: when_no_match
         uri: arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/<arn>/invocations
         httpMethod: POST
+
   '/swagger':
     get:
       description: swagger spec
@@ -280,18 +289,21 @@ parameters:
     in: header
     description: request body mime type
     type: string
+    default: "application/json"
   bearerToken:
     name: authorization
     in: header
     description: authorization token
     required: true
     type: string
+    default: "Bearer abcz-1239"
   userstatID:
     name: id
     in: path
     description: userstat ID
     required: true
     type: integer
+    default: 10
 # Added by API Auto Mocking Plugin
 # host: svr-compare.optizmo.<tld>
 # basePath: /eaglewarrior8837/temp/1.0.0
