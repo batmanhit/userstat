@@ -396,5 +396,6 @@
       "type": "integer"
     }
   },
-  "host": "svr-compare.optizmo.<tld>"
+  "host": "svr-compare.optizmo.<tld>",
+  "basePath": "/userstats"
 }

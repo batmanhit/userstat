@@ -6,7 +6,7 @@ info:
 
 host: svr-compare.optizmo.<tld>
 # NOTE: ignored by aws, custom basepath mapping needs to be setup in aws console
-# basePath: '/userstats'
+basePath: '/userstats'
 schemes:
   - https
 consumes:
