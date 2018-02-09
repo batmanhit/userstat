@@ -65,6 +65,13 @@ functions:
       - http:
           path: /userstats
           method: OPTIONS
-
+  preflight-userstat-edit:
+    handler: lib/preflight.handler
+    package:
+      include: ['lib/preflight/**']
+    events:
+      - http:
+          path: /userstats/{id+}
+          method: OPTIONS     
 plugins:
   - serverless-offline
