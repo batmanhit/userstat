@@ -4,7 +4,7 @@ info:
   version: '1.0.0'
   description: API that persists daily stats of compare users usage
 
-# host: svr-compare.optizmo.<tld>
+host: svr-compare.optizmo.<tld>
 # NOTE: ignored by aws, custom basepath mapping needs to be setup in aws console
 # basePath: '/userstats'
 schemes:
@@ -276,5 +276,5 @@ parameters:
     required: true
     type: integer
 # Added by API Auto Mocking Plugin
-host: virtserver.swaggerhub.com
-basePath: /eaglewarrior8837/temp/1.0.0
+# host: svr-compare.optizmo.<tld>
+# basePath: /eaglewarrior8837/temp/1.0.0

@@ -396,6 +396,5 @@
       "type": "integer"
     }
   },
-  "host": "virtserver.swaggerhub.com",
-  "basePath": "/eaglewarrior8837/temp/1.0.0"
+  "host": "svr-compare.optizmo.<tld>"
 }
