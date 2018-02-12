@@ -20,11 +20,12 @@ const { params, payload, rows } = require(__('test/fixture/edit.js'));
 const eventOk = createEvent(params, payload);
 
 // stubs
-const edit = () => Promise.resolve(rows[0]);
+const edit = () => Promise.resolve(rows);
 const noop = () => {};
 const log = noop;
 const reply = body => Object.assign({ statusCode: 200 }, body);
 const replyError = noop;
+const replyNotFound = noop;
 const auth = obj => Promise.resolve(obj); // { event }
 const validate = () => obj => obj.data; // { event, data }
 
@@ -36,6 +37,7 @@ const transport = () =>
     log,
     reply,
     replyError,
+    replyNotFound,
     validate,
   });
 
@@ -45,7 +47,7 @@ test('valid request', t => {
     const keys = ['created', 'id', 'request', 'response', 'stats', 'status'];
     t.strictSame(statusCode, 200);
     t.strictSame(body.msg, 'OK');
-    t.strictSame(Object.keys(body.data).sort(), keys);
+    t.strictSame(Object.keys(body.data[0]).sort(), keys);
     t.end();
   });
 });

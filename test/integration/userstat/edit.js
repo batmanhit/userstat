@@ -35,9 +35,15 @@ const { handler } = require(__('lib/userstat/edit'));
 test('valid request', t => {
   handler(eventOk, {}, (err, { statusCode, body }) => {
     const { msg } = JSON.parse(body);
-    t.strictSame(statusCode, 200);
-    t.strictSame(msg, 'OK');
-    t.end();
+    if (statusCode === 404) {
+      t.strictSame(statusCode, 404);
+      t.strictSame(msg, 'None of the records updated!');
+      t.end();
+    } else {
+      t.strictSame(statusCode, 200);
+      t.strictSame(msg, 'OK');
+      t.end();
+    }
   });
 });
 

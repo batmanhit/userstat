@@ -33,9 +33,15 @@ const { handler } = require(__('lib/userstat/browse'));
 test('valid request', t => {
   handler(eventOk, {}, (err, { statusCode, body }) => {
     const { msg } = JSON.parse(body);
-    t.strictSame(statusCode, 200);
-    t.strictSame(msg, 'OK');
-    t.end();
+    if (statusCode === 404) {
+      t.strictSame(statusCode, 404);
+      t.strictSame(msg, 'Userstats Not Found');
+      t.end();
+    } else {
+      t.strictSame(statusCode, 200);
+      t.strictSame(msg, 'OK');
+      t.end();
+    }
   });
 });
 

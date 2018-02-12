@@ -24,6 +24,7 @@ const noop = () => {};
 const log = noop;
 const reply = body => Object.assign({ statusCode: 200 }, body);
 const replyError = noop;
+const replyNotFound = noop;
 const auth = obj => Promise.resolve(obj); // { event }
 const validate = () => obj => obj.data; // { event, data }
 
@@ -35,6 +36,7 @@ const transport = () =>
     log,
     reply,
     replyError,
+    replyNotFound,
     validate,
   });
 
