@@ -91,6 +91,9 @@
           },
           "401": {
             "$ref": "#/responses/UnAuthorised"
+          },
+          "404": {
+            "$ref": "#/responses/DataNotFound"
           }
         },
         "x-amazon-apigateway-integration": {
@@ -223,6 +226,9 @@
           },
           "401": {
             "$ref": "#/responses/UnAuthorised"
+          },
+          "404": {
+            "$ref": "#/responses/DataNotFound"
           }
         },
         "x-amazon-apigateway-integration": {
@@ -290,6 +296,9 @@
           },
           "401": {
             "$ref": "#/responses/UnAuthorised"
+          },
+          "404": {
+            "$ref": "#/responses/DataNotFound"
           }
         },
         "x-amazon-apigateway-integration": {
@@ -397,6 +406,15 @@
           "type": "string"
         }
       }
+    },
+    "Response404": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "msg": {
+          "type": "string"
+        }
+      }
     }
   },
   "responses": {
@@ -410,6 +428,12 @@
       "description": "Unauthorised Request",
       "schema": {
         "$ref": "#/definitions/Response401"
+      }
+    },
+    "DataNotFound": {
+      "description": "Data Not Found",
+      "schema": {
+        "$ref": "#/definitions/Response404"
       }
     }
   },
