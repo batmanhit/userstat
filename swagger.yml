@@ -70,6 +70,8 @@ paths:
           $ref: "#/responses/NotFound"
         401:
           $ref: "#/responses/UnAuthorised"
+        404:
+          $ref: "#/responses/DataNotFound"
       x-amazon-apigateway-integration:
         type: aws_proxy
         passthroughBehavior: when_no_match
@@ -159,6 +161,8 @@ paths:
           $ref: "#/responses/NotFound"
         401:
           $ref: "#/responses/UnAuthorised"
+        404:
+          $ref: "#/responses/DataNotFound"
       x-amazon-apigateway-integration:
         type: aws_proxy
         passthroughBehavior: when_no_match
@@ -202,6 +206,8 @@ paths:
           $ref: "#/responses/NotFound"
         401:
           $ref: "#/responses/UnAuthorised"
+        404:
+          $ref: "#/responses/DataNotFound"
       x-amazon-apigateway-integration:
         type: aws_proxy
         passthroughBehavior: when_no_match
@@ -274,6 +280,12 @@ definitions:
     properties:
       msg:
         type: "string"
+  Response404:
+    type: object
+    additionalProperties: false
+    properties:
+      msg:
+        type: "string"
 responses:
   NotFound:
     description: "NotFound Request"
@@ -283,6 +295,10 @@ responses:
     description: "Unauthorised Request"
     schema:
       $ref: "#/definitions/Response401"
+  DataNotFound:
+    description: "Data Not Found"
+    schema:
+      $ref: "#/definitions/Response404"
 parameters:
   jsonContentType:
     name: content-type
