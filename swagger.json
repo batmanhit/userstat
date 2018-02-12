@@ -37,22 +37,19 @@
             "in": "query",
             "description": "User Stat ID",
             "required": true,
-            "type": "integer",
-            "default": 10
+            "type": "integer"
           },
           {
             "name": "from",
             "in": "query",
             "description": "From Date",
-            "type": "string",
-            "default": "20170101"
+            "type": "string"
           },
           {
             "name": "to",
             "in": "query",
             "description": "To Date",
-            "type": "string",
-            "default": "20180209"
+            "type": "string"
           },
           {
             "name": "month",
@@ -458,8 +455,7 @@
       "in": "path",
       "description": "userstat ID",
       "required": true,
-      "type": "integer",
-      "default": 10
+      "type": "integer"
     }
   }
 }

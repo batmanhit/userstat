@@ -30,19 +30,16 @@ paths:
         description: User Stat ID
         required: true
         type: integer
-        default: 10
       - name: from
         in: query
         description: From Date
         # required: true
         type: string
-        default: '20170101'
       - name: to
         in: query
         description: To Date
         # required: true
         type: string
-        default: '20180209'
       - name: month
         in: query
         description: Month
@@ -61,7 +58,7 @@ paths:
             properties:
               msg: 
                 type: string
-                default: OK
+                default: "OK"
               data: 
                 type: array
                 items:
@@ -319,7 +316,6 @@ parameters:
     description: userstat ID
     required: true
     type: integer
-    default: 10
 # Added by API Auto Mocking Plugin
 # host: svr-compare.optizmo.<tld>
 # basePath: /eaglewarrior8837/temp/1.0.0
