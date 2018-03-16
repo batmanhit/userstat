@@ -3,13 +3,6 @@
 <h1>userstats</h1>
 <p>API that persists daily stats of compare users usage</p>
 
-<a href="https://gitlab.grit.work/optizmo/compare/userstats/commits/master"><img  src="https://gitlab.grit.work/optizmo/compare/userstats/badges/master/pipeline.svg" /></a>
-
-
-<a href="https://gitlab.grit.work/optizmo/compare/userstats/commits/master"><img alt="coverage report" src="https://gitlab.grit.work/optizmo/compare/userstats/badges/master/coverage.svg" /></a>
-
-<p>&nbsp;</p>
-
 ## Development
 Import the `compare-userstats.postman_collection.json` into postman. Keep it up to date by exporting your collection to the file.
 The following commands will allow you to run the service locally.  
@@ -17,7 +10,7 @@ The following commands will allow you to run the service locally.
 ### Commands
 ```bash
 # clone repo
-git clone git@gitlab.grit.work:optizmo/compare/userstats.git
+git clone https://github.com/cooleagle8837/userstat.git
 # install dependencies
 npm i
 # run server locally
