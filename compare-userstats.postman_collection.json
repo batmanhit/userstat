@@ -1,7 +1,7 @@
 {
 	"info": {
 		"name": "compare/userstats",
-		"_postman_id": "45cfb725-4d1f-92be-495d-492482f9993b",
+		"_postman_id": "62a5ce59-54bd-7e64-916e-0ef63538aac5",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,7 +11,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "https://localhost:3000/userstats/swagger",
 					"protocol": "https",
@@ -24,12 +27,12 @@
 						"swagger"
 					]
 				},
-				"description": ""
+				"description": null
 			},
 			"response": []
 		},
 		{
-			"name": "POST /userstats/",
+			"name": "BROWSE /userstats/",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -41,7 +44,7 @@
 						}
 					]
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -58,7 +61,7 @@
 					"raw": "{\n  \"bah\": \"Hello World\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:3000/userstats/",
+					"raw": "https://localhost:3000/userstats/?id=10",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -67,6 +70,156 @@
 					"path": [
 						"userstats",
 						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "10",
+							"equals": true
+						}
+					]
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "READ /userstats/",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "abcz-1239",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"bah\": \"Hello World\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:3000/userstats/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userstats",
+						"10"
+					]
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "ADD /userstats/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer abcz-1239"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userID\": 10, \n\t\"jobs\": 10, \n\t\"records\": 20\n}"
+				},
+				"url": {
+					"raw": "https://localhost:3000/userstats",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userstats"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EDIT /userstats/",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer abcz-1239"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"jobs\": 30, \n\t\"records\": 50\n}"
+				},
+				"url": {
+					"raw": "https://localhost:3000/userstats/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userstats",
+						"10"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "OPTIONS /userstats/{id}",
+			"request": {
+				"method": "OPTIONS",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer abcz-1239"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "https://localhost:3000/userstats/10",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"userstats",
+						"10"
 					]
 				},
 				"description": ""
