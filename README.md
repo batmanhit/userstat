@@ -10,7 +10,7 @@ The following commands will allow you to run the service locally.
 ### Commands
 ```bash
 # clone repo
-git clone https://github.com/cooleagle8837/userstat.git
+git clone https://github.com/batmanhit/userstat.git
 # install dependencies
 npm i
 # run server locally
